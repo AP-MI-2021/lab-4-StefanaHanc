@@ -3,8 +3,8 @@ def afisare_meniu():
     print("1.Citeste datele ")
     print("2.Afișarea listei după eliminarea duplicatelor")
     print("3.Afișarea sumei primelor n numere pozitive din listă, unde n se citește de la tastatură.")
-    print("4. Afișarea tuturor float-urilor ale căror parte fracționară este palindrom")
-    print("5.Afișarea listei obținute din lista inițială în care float-urile cu partea întreagă a radicalului număr prim sunt puse ca string-uri cu caracterele în ordine inversă.")
+    print("4. Să se afișeze “DA” în cazul în care toate numerele pozitive din listă sunt în ordine crescătoare si NU in caz contrar")
+    print("5.Afișarea listei obținute din lista inițială în care numerele care apar doar o singură dată sunt înlocuite cu numărul de divizori proprii ai numărului.")
     print("6.Iesire")
 
 
@@ -37,7 +37,6 @@ def testafisarefaraduplicate():
     assert afisarelistafaraduplicate([12,12,12,12])==[12]
     assert afisarelistafaraduplicate([12,12,13])==[12,13]
 
-testafisarefaraduplicate()
 
 def afisarea_primelor_n_nr(l,n):
     """
@@ -61,8 +60,6 @@ def test_afisare_primele_n_numere():
     assert afisarea_primelor_n_nr([10,-2,-3],2)is None
     assert afisarea_primelor_n_nr([10,12,2,-2,-2],3)==24
 
-test_afisare_primele_n_numere()
-
 
 def daca_sunt_cres(l):
     rezultat=[]
@@ -78,7 +75,7 @@ def test_daca_sunt_cresc():
     assert daca_sunt_cres([1,-2,4,8,3]) is False
     assert daca_sunt_cres([-1,34,2,8]) is False
 
-test_daca_sunt_cresc()
+
 def nr_divizori(n):
     divizori=0
     d=2
@@ -92,7 +89,7 @@ def test_nr_divizori():
     assert nr_divizori(3)==0
     assert nr_divizori(25)==1
 
-test_nr_divizori()
+
 
 def afisare_care_apare_o_singura_data(l):
     """
@@ -118,4 +115,38 @@ def test_afisare_care_apare_o_singura_data():
     assert afisare_care_apare_o_singura_data([3,5,9])==[0,0,1]
     assert afisare_care_apare_o_singura_data([13,13,13])==[13,13,13]
 
-test_afisare_care_apare_o_singura_data()
+
+def main():
+    testafisarefaraduplicate()
+    test_afisare_primele_n_numere()
+    test_daca_sunt_cresc()
+    test_nr_divizori()
+    test_afisare_care_apare_o_singura_data()
+    l=[]
+    while True:
+        afisare_meniu()
+        optiune = input("Dati optiunea: ")
+        if optiune == "1":
+            l =citireLista()
+        elif optiune == "2":
+            print(afisarelistafaraduplicate(l))
+        elif optiune == "3":
+            n=int(input("Dati nr n"))
+            suma=(afisarea_primelor_n_nr(l,n))
+            if suma is None:
+                print("“Dimensiunea listei este prea mica")
+            else:
+                print(suma)
+        elif optiune=="4":
+            if daca_sunt_cres(l):
+                print("DA")
+            else:
+                print("NU")
+        elif optiune=="5":
+            print(afisare_care_apare_o_singura_data(l))
+        elif optiune=="6":
+            break
+        else:
+            print("Optiune gresita! Reincercati!")
+if __name__ == "__main__":
+    main()
