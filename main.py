@@ -16,7 +16,8 @@ def citireLista():
         l.append(int(x))
     return l
 
-def afisarelistafaraduplicate(l):
+
+def afisare_lista_fara_duplicate(l):
     """
     Afișarea listei după eliminarea duplicatelor
     :param l: Lista pe care o verificam
@@ -32,10 +33,10 @@ def afisarelistafaraduplicate(l):
             rezultat.append(l[i])
     return rezultat
 
-def testafisarefaraduplicate():
-    assert afisarelistafaraduplicate([12,23,45,12,10])==[12,23,45,10]
-    assert afisarelistafaraduplicate([12,12,12,12])==[12]
-    assert afisarelistafaraduplicate([12,12,13])==[12,13]
+def test_afisare_fara_duplicate():
+    assert afisare_lista_fara_duplicate([12,23,45,12,10])==[12,23,45,10]
+    assert afisare_lista_fara_duplicate([12,12,12,12])==[12]
+    assert afisare_lista_fara_duplicate([12,12,13])==[12,13]
 
 
 def afisarea_primelor_n_nr(l,n):
@@ -47,7 +48,7 @@ def afisarea_primelor_n_nr(l,n):
     """
     s=0
     for x in l:
-        if x>0 and n!=0:
+        if x>=0 and n!=0:
             s=s+x
             n=n-1
     if n!=0:
@@ -62,6 +63,11 @@ def test_afisare_primele_n_numere():
 
 
 def daca_sunt_cres(l):
+    """
+    Se verifica daca numerele strict pozitive sunt crescatoare in lista
+    :param l: Lista verificata
+    :return: True in caz ca lista este crescatoare fals in caz contrar
+    """
     rezultat=[]
     for x in l:
         if x>=0:
@@ -70,6 +76,8 @@ def daca_sunt_cres(l):
         if rezultat[i]>rezultat[i+1]:
             return False
     return True
+
+
 def test_daca_sunt_cresc():
     assert daca_sunt_cres([1,-2,4,8,-6]) is True
     assert daca_sunt_cres([1,-2,4,8,3]) is False
@@ -117,7 +125,7 @@ def test_afisare_care_apare_o_singura_data():
 
 
 def main():
-    testafisarefaraduplicate()
+    test_afisare_fara_duplicate()
     test_afisare_primele_n_numere()
     test_daca_sunt_cresc()
     test_nr_divizori()
@@ -129,7 +137,7 @@ def main():
         if optiune == "1":
             l =citireLista()
         elif optiune == "2":
-            print(afisarelistafaraduplicate(l))
+            print(afisare_lista_fara_duplicate(l))
         elif optiune == "3":
             n=int(input("Dati nr n"))
             suma=(afisarea_primelor_n_nr(l,n))
